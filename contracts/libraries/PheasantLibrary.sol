@@ -2,10 +2,10 @@
 pragma solidity >=0.5.0;
 
 import "./SafeMath.sol";
-import "../interfaces/IPancakeFactory.sol";
-import "../interfaces/IPancakePair.sol";
+import "../interfaces/IPheasantFactory.sol";
+import "../interfaces/IPheasantPair.sol";
 
-library PancakeLibrary {
+library PheasantLibrary {
     using SafeMath for uint256;
 
     // returns sorted token addresses, used to handle return values from pairs sorted in this order
@@ -29,7 +29,7 @@ library PancakeLibrary {
                         hex"ff",
                         factory,
                         keccak256(abi.encodePacked(token0, token1)),
-                        hex"f6ba7a313bac1a73379a3396ba5c9daedae232549d7bcd8e38cdc92c771d40dd" // init code hash
+                        hex"8250fbeb8b7880978bc95b8230b74313f1d443887214d734e39d3df6bd3a002a" // init code hash
                     )
                 )
             )
@@ -44,7 +44,7 @@ library PancakeLibrary {
     ) internal view returns (uint256 reserveA, uint256 reserveB) {
         (address token0, ) = sortTokens(tokenA, tokenB);
         pairFor(factory, tokenA, tokenB);
-        (uint256 reserve0, uint256 reserve1, ) = IPancakePair(pairFor(factory, tokenA, tokenB)).getReserves();
+        (uint256 reserve0, uint256 reserve1, ) = IPheasantPair(pairFor(factory, tokenA, tokenB)).getReserves();
         (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
     }
 

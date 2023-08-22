@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity =0.5.16;
 
-import "./interfaces/IPancakeERC20.sol";
+import "./interfaces/IPheasantERC20.sol";
 import "./libraries/SafeMath.sol";
 
-contract PancakeERC20 is IPancakeERC20 {
+contract PheasantERC20 is IPheasantERC20 {
     using SafeMath for uint256;
-// 'Cake-LP', 'Pancake LPs'     "PS LPs";  "PS-LP";
+// 'Cake-LP', 'Pheasant LPs'     "PS LPs";  "PS-LP";
     string public constant name = "PheasantSwap LPs";
     string public constant symbol = "Ps-LP";
     uint8 public constant decimals = 18;
@@ -25,7 +25,7 @@ contract PancakeERC20 is IPancakeERC20 {
     constructor() public {
         uint256 chainId;
         assembly {
-            chainId := chainid
+            chainId := chainid()
         }
         DOMAIN_SEPARATOR = keccak256(
             abi.encode(
